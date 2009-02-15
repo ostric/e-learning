@@ -1,0 +1,42 @@
+detect_relations: true
+actAs: [Timestampable]
+
+User:
+    tableName: sys_user
+    columns:
+        role_id: integer
+        username: string(255)
+        password: string(255)
+    relations:
+        Role:
+            foreignAlias: users
+            onUpdate: CASCADE
+
+Role:
+    tableName: sys_role
+    columns:
+        name: string(255)
+        description: string(255)
+        
+Menu:
+    tableName: sys_menu
+    columns:
+        title: string(64)
+        description: string(255)
+        parent_id: integer
+        url: string(255)
+        
+RoleMenu:
+    tableName: sys_role_menu
+    columns:
+        menu_id: integer
+        role_id: integer
+        allow: boolean
+    relations:
+        Role:
+            onUpdate: CASCADE
+        Menu:
+            onUpdate: CASCADE
+            
+        
+
